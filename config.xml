@@ -1,4 +1,4 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="cc.christopherstevens.myfirstapp" version="1.0.0">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="cc.christopherstevens.ibeacontourstarter" version="1.0.0">
   <name>iBeacon Tour Starter</name>
   <description>iBeacon Tour Starter is a very basic iBeacon tour starter. ;)</description>
   <author href="http://www.christopherstevens.cc" email="chris@christopherstevens.cc">Christopher Stevens</author>

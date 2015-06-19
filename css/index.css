@@ -40,9 +40,25 @@ body {
     color: #FFF;
 }
 
+h2 {
+    color: #00d8ff;
+    border-bottom: #00d8ff solid 4px;
+    line-height: 1.5em;
+}
+
+a, a:active, a:hover, a:visited {
+    color: #00d8ff;
+}
+
 /* Portrait layout (default) */
 .app {
-    margin-top: 30px;
+    padding: 10px;
+}
+
+.app img {
+    display: block;
+    height: auto;
+    max-width: 100%;
 }
 
 /* Landscape layout (with min-width) */
@@ -63,10 +79,9 @@ body {
 }
 
 .row {
-    /*margin-left: -10px;
-    margin-right: -10px;*/
-    border-bottom: #000b1c solid 1px;
+    
 }
+
 .col {
     float: left;
     min-height: 1px;
@@ -74,5 +89,122 @@ body {
     position: relative;
     overflow-x: hidden;
     white-space: nowrap;
+}
+
+/* thanks Zurb Foundation */
+.flex-video {
+    height: 0;
+    margin-bottom: 0.88889rem;
+    overflow: hidden;
+    padding-bottom: 67.5%;
+    padding-top: 1.38889rem;
+    position: relative;
+}
+
+.flex-video iframe,
+.flex-video object,
+.flex-video embed,
+.flex-video video {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+#status {
+
+}
+
+#status-title {
+
+}
+
+#status-message {
+
+}
+
+#status-btn-container {
+
+}
+
+#status-btn {
+
+}
+
+#action-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+
+    
+    width: 100%;
+    background: #003992;
+    border-top: #00d8ff solid 4px;
+    padding: 10px;
+
+    font-size: 20px;
+    line-height: 1.2em
+}
+
+#action-thumb {
+    margin: -40px 10px 0 0;
+    z-index: 11;
+    
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+
+#action-thumb img {
+    border: #00d8ff solid 4px;
+    border-radius: 50px;
+}
+
+#action-nearby {
+    font-style: italic;
+    color: #00d8ff;
+    font-size: 16px;
+}
+
+#action-title {
+
+}
+
+#action-bar-spacer {
+    height: 140px;
+}
+
+#exhibit {
+
+}
+
+#exhibit-feature-img {
+    margin: -10px -10px 0 -10px;
+}
+
+#exhibit-feature-img img {
+    width: 100%;
+}
+
+#exhibit-title {
+
+}
+
+#exhibit-audio {
+
+}
+
+#exhibit-description {
+
+}
+
+#exhibit-videos {
+
 }
 

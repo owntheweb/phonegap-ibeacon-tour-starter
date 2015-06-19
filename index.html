@@ -32,7 +32,68 @@
     <body>
         <div class="app">
             
-            <div id="domLog" style="margin-top: 10px;"></div>
+            <div id="action-bar" class="hidden">
+                <div id="action-thumb">
+                    <!--
+                    <img src="http://christopherstevens.cc/app/sites/default/files/styles/thumbnail/public/images/feature/curiosity.jpg?itok=TagdQ6SC" width="100" height="100" alt="Curiosity Martian Rover" typeof="foaf:Image" class="image-style-thumbnail" />
+                    -->
+                </div>
+                <div id="action-nearby">Nearby:</div>
+                <div id="action-title"><!--Spirit and Opportunity--></div>
+            </div>
+
+            <div id="status" class="hidden">
+                <div id="status-title">Scanning for Exhibits...</div>
+                <div id="status-message">This app uses Bluetooth Low Energy (BLE) technology to locate nearby exhibits with iBeacons. Make sure to have Bluetooth enabled on your phone.</div>
+                <div id="status-btn-container">
+                    <a id="status-btn" href="javascript:;">Retry</a>
+                </div>
+            </div>
+
+            <div id="exhibit">
+                <div id="exhibit-feature-img">
+                    <!--
+                    <img src="http://christopherstevens.cc/app/sites/default/files/styles/large/public/images/feature/huygens.jpg?itok=cmIzLkJp" width="480" height="480" alt="Huygens Probe (Illustration)" typeof="foaf:Image" class="image-style-large" />
+                    -->
+                </div>
+                <h2 id="exhibit-title"><!--Cassini-Huygens--></h2>
+                <!--<div id="exhibit-audio">audio tour features coming soon</div>-->
+                <div id="exhibit-description">
+                    <!--
+                    <p>The Huygens Probe which landed on Saturn's moon Titan, January 14, 2005, having a mission length of about 3 hours due to battery life at that time.&nbsp;</p>
+
+                    <p><span>The Huygens Probe was named after Christiaan Huygens, a Dutch astronomer who in 1655 discovered Titan, Saturn's largest moon. The probe was designed by the European Space Agency (ESA), to perform an in-depth study of the clouds, atmosphere, and surface of Titan.&nbsp;</span></p>
+
+                    <p><span>Christiaan&nbsp;Huygens is also credited with identifying the rings of Saturn, describing the transverse wave form of light, and building the first pendulum clock.&nbsp;</span></p>
+
+                    <p><span>Sources:</span><br />
+                    <a href="https://www.nasa.gov/mission_pages/cassini/spacecraft/huygens.html">https://www.nasa.gov/mission_pages/cassini/spacecraft/huygens.html</a><br />
+                    <a href="http://www.planetary.org/blogs/emily-lakdawalla/2015/01151154-huygens-10-years.html">http://www.planetary.org/blogs/emily-lakdawalla/2015/01151154-huygens-10-years.html</a></p>
+                    -->
+
+                </div>
+                
+                <div id="exhibit-videos">
+                    <!--
+                    <h2>Videos</h2>
+                    <div class="flex-video">
+                        <iframe width="420" height="315" frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/nDuo6e1ykGI"></iframe>
+                    </div>
+
+                    <div class="flex-video">
+                        <iframe width="420" height="315" frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/9L471ct7YDo"></iframe>
+                    </div>
+
+                    <div class="flex-video">
+                        <iframe width="420" height="315" frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/fXwtDTk810s"></iframe>
+                    </div>
+                    -->
+                </div>
+            </div>
+
+            <div id="domLog"></div>
+
+            <div id="action-bar-spacer"></div>
             
         </div>
         <script type="text/javascript" src="cordova.js"></script>
@@ -49,7 +110,7 @@
 
             //reset values and displays when resuming app after pausing/using other apps
             document.addEventListener("resume", function() {
-                eMonitor.resetReadings();
+                //eMonitor.resetReadings(); //!!! to do
             }, false);
 
         } , false);
