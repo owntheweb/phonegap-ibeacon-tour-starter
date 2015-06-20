@@ -45,7 +45,6 @@
   <gap:plugin name="org.apache.cordova.statusbar" />
   <preference name="StatusBarOverlaysWebView" value="true" />
   <preference name="StatusBarStyle" value="lightcontent" />
-  <preference name="StatusBarBackgroundColor" value="#000b1c" />
 
   <!-- Adndroid API iBeacon support happens starting 4.3, specifying 4.4 below (KitKat is born!) -->
   <!-- see: http://developer.android.com/guide/topics/manifest/uses-sdk-element.html -->
