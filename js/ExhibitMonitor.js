@@ -58,10 +58,22 @@ ExhibitMonitor.prototype.setDeligate = function() {
             //!!! Android is making it to here with good values (YAY iBeacons work!),
             //!!! but never into the if() below as iOS does... What's different?
             //!!! ///////////////////////////////////////////////////////////////////
-            this.logToDom('didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult));
+            
+            //!!! tests:
+            var tmpMsg = '';
+            var toType = function(obj) {
+                return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
+            }
+
+            tmpMsg += toType(this.rangeBeacons[i].uuid) + ":" + toType(this.rangeBeacons[i].major) + ":" + toType(this.rangeBeacons[i].minor;
+            tmpMsg += 'didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult);
+            this.logToDom(tmpMsg);
+            //!!! end tests
 
             if(pluginResult.region.uuid == this.rangeBeacons[i].uuid && pluginResult.region.major == this.rangeBeacons[i].major && pluginResult.region.minor == this.rangeBeacons[i].minor) {
         		
+
+                
 
                 //set RSSI value
         		this.rangeBeacons[i].rssi = pluginResult.beacons[0].rssi;
