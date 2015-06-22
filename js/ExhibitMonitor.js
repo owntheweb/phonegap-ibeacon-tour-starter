@@ -61,40 +61,42 @@ ExhibitMonitor.prototype.setDeligate = function() {
             
             //!!! tests:
 
-            this.logToDom('didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult));
+            //this.logToDom('didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult));
             
             //!!! end tests
+            
+            if(pluginResult.beacons.length > 0) { //Android not picking up iBeacons sometimes when event is fired?
+                if(pluginResult.region.uuid == this.rangeBeacons[i].uuid && pluginResult.region.major == this.rangeBeacons[i].major && pluginResult.region.minor == this.rangeBeacons[i].minor) {
+            		
 
-            if(pluginResult.region.uuid == this.rangeBeacons[i].uuid && pluginResult.region.major == this.rangeBeacons[i].major && pluginResult.region.minor == this.rangeBeacons[i].minor) {
-        		
+                    
 
-                
+                    //set RSSI value
+            		this.rangeBeacons[i].rssi = pluginResult.beacons[0].rssi;
 
-                //set RSSI value
-        		this.rangeBeacons[i].rssi = pluginResult.beacons[0].rssi;
+            		//set range/range label values
+            		switch(pluginResult.beacons[0].proximity) {
+            			case 'ProximityImmediate':
+            				prox = 'immediate';
+            				break;
+            			case 'ProximityNear':
+            				prox = 'near';
+            				break;
+            			case 'ProximityFar':
+            				prox = 'far';
+            				break;
+            			case 'ProximityUnknown':
+            				prox = 'unknown';
+            				break;
+            			default:
+            				prox = 'unknown';
+            		}
 
-        		//set range/range label values
-        		switch(pluginResult.beacons[0].proximity) {
-        			case 'ProximityImmediate':
-        				prox = 'immediate';
-        				break;
-        			case 'ProximityNear':
-        				prox = 'near';
-        				break;
-        			case 'ProximityFar':
-        				prox = 'far';
-        				break;
-        			case 'ProximityUnknown':
-        				prox = 'unknown';
-        				break;
-        			default:
-        				prox = 'unknown';
-        		}
+            		this.rangeBeacons[i].prox = prox;
 
-        		this.rangeBeacons[i].prox = prox;
-
-        		break;
-        	}
+            		break;
+            	}
+            }
         }
 
         //show closest iBeacon exhibit
