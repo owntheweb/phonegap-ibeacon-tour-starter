@@ -58,7 +58,7 @@ ExhibitMonitor.prototype.setDeligate = function() {
             //!!! Android is making it to here with good values (YAY iBeacons work!),
             //!!! but never into the if() below as iOS does... What's different?
             //!!! ///////////////////////////////////////////////////////////////////
-            logToDom('didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult));
+            this.logToDom('didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult));
 
             if(pluginResult.region.uuid == this.rangeBeacons[i].uuid && pluginResult.region.major == this.rangeBeacons[i].major && pluginResult.region.minor == this.rangeBeacons[i].minor) {
         		
@@ -93,7 +93,7 @@ ExhibitMonitor.prototype.setDeligate = function() {
         //show closest iBeacon exhibit
         this.featureClosestExhibit();
 
-        //logToDom('[DOM] didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult));
+        //this.logToDom('[DOM] didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult));
     }.bind(this);
 
     cordova.plugins.locationManager.setDelegate(delegate);
