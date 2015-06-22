@@ -64,8 +64,10 @@ ExhibitMonitor.prototype.setDeligate = function() {
             //this.logToDom('didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult));
             
             //!!! end tests
-            
-            if(pluginResult.beacons.length > 0) { //Android not picking up iBeacons sometimes when event is fired?
+
+            if(pluginResult.hasOwnProperty('beacons') && pluginResult.beacons.length > 0) { //Android not picking up iBeacons sometimes when event is fired?
+                this.logToDom('didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult));
+
                 if(pluginResult.region.uuid == this.rangeBeacons[i].uuid && pluginResult.region.major == this.rangeBeacons[i].major && pluginResult.region.minor == this.rangeBeacons[i].minor) {
             		
 
