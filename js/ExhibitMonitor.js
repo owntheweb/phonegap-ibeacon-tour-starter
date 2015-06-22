@@ -55,6 +55,13 @@ ExhibitMonitor.prototype.setDeligate = function() {
 
         this.logToDom('did range beacons in region');
 
+        tmpLogMsg += this.rangeBeacons.length + '<br>';
+        tmpLogMsg += pluginResult.region.uuid + '<br>';
+        tmpLogMsg += pluginResult.region.major + '<br>';
+        tmpLogMsg += pluginResult.region.minor + '<br>';
+        tmpLogMsg += '<br>';
+        tmpLogMsg += '<br>';
+
         //update visuals for ranged iBeacon
         for(i=0; i<this.rangeBeacons.length; i++) {
         	if(pluginResult.region.uuid == this.rangeBeacons[i].uuid && pluginResult.region.major == this.rangeBeacons[i].major && pluginResult.region.minor == this.rangeBeacons[i].minor) {
