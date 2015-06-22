@@ -101,16 +101,23 @@
 
         <script>
         document.addEventListener('deviceready', function() { 
+            alert('device ready!');
+
             //keep app awake
             window.plugins.insomnia.keepAwake();
+
+            alert('insomnia started (no screen sleep)');
 
             //start monitoring
             var eMonitor = new ExhibitMonitor();
             eMonitor.onDeviceReady();
 
+            alert('exhibit monitor set');
+
             //reset values and displays when resuming app after pausing/using other apps
             document.addEventListener("resume", function() {
                 //eMonitor.resetReadings(); //!!! to do
+                alert('resumed app');
             }, false);
 
         } , false);

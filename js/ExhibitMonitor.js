@@ -47,9 +47,13 @@ ExhibitMonitor.prototype.logToDom = function(message) {
 ExhibitMonitor.prototype.setDeligate = function() {
     var delegate = new cordova.plugins.locationManager.Delegate();
 
+    this.logToDom('new delegate var set');
+
     //talked about as "ranging"
     delegate.didRangeBeaconsInRegion = function (pluginResult) {
         var prox;
+
+        this.logToDom('did range beacons in region');
 
         //update visuals for ranged iBeacon
         for(i=0; i<this.rangeBeacons.length; i++) {
@@ -128,11 +132,15 @@ ExhibitMonitor.prototype.featureClosestExhibit = function() {
         document.getElementById('action-title').innerHTML = this.closest.content.title;
 
 	}
+
+    this.logToDom('featured closest exhibit');
 };
 
 // Start monitoring iBeacon ranges
 ExhibitMonitor.prototype.startRangingBeacons = function() {
     var i;
+
+    this.logToDom('going to start ranging beacons');
 
     for(i=0; i<this.rangeBeacons.length; i++) {
         //this.rangeBeacons[i].i = i; //set i for display update purposes for now (instead of "redrawing" everything)
@@ -145,6 +153,8 @@ ExhibitMonitor.prototype.startRangingBeacons = function() {
             .fail(console.error)
             .done();
     }
+
+    this.logToDom('beacons have been set to start ranging');
 };
 
 //Get exhibit and iBeacon data from the D8 website
@@ -156,11 +166,17 @@ ExhibitMonitor.prototype.getData = function() {
     var request = new XMLHttpRequest();
     request.open('GET', this.dataURL, true);
 
+    this.logToDom('requesting website data');
+
     request.onload = function() {
+      this.logToDom('data loaded');
+
       if (request.status >= 200 && request.status < 400) {
 
         //assign data
         this.data = JSON.parse(request.responseText);
+
+        this.logToDom('data assigned');
 
         //rearange data for increased clearity, centered around iBeacons
         for(i=0; i<this.data.length; i++) {
@@ -222,19 +238,27 @@ ExhibitMonitor.prototype.getData = function() {
 
         }
 
+        this.logToDom('ranged ibeacon data ready');
+
         this.startRangingBeacons();
+
+        this.logToDom('going to set deligate...');
 
         //manage iBeacon ranging events
         //!!! check order: likely need to move before this.startRangingBeacons(); ?
         this.setDeligate();
+
+        this.logToDom('deligate set');
       } else {
         //!!! need to allow for retry, don't kill app here
+        this.logToDom('There was an error when trying to load the exhibit data. Tell the app developers!');
         alert('There was an error when trying to load the exhibit data. Tell the app developers!');
       }
     }.bind(this);
 
     request.onerror = function() {
       // There was a connection error of some sort
+       this.logToDom('There was a connection error of some sort');
     };
 
     request.send();
@@ -279,6 +303,8 @@ ExhibitMonitor.prototype.displayClosestExhibit = function() {
 //deviceready event handler
 ExhibitMonitor.prototype.onDeviceReady = function() {
     try {
+        this.logToDom('setting nav events');
+
         //nav events
         document.getElementById('action-bar').onclick = function() { this.displayClosestExhibit(); }.bind(this);
         document.getElementById('action-thumb').onclick = function() { this.displayClosestExhibit(); }.bind(this);
@@ -287,6 +313,7 @@ ExhibitMonitor.prototype.onDeviceReady = function() {
 
         this.getData();
     } catch(err) {
+        this.logToDom(err);
         alert(err);
         this.logToDom(err.message);
     }  
