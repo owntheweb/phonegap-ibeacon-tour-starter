@@ -60,14 +60,9 @@ ExhibitMonitor.prototype.setDeligate = function() {
             //!!! ///////////////////////////////////////////////////////////////////
             
             //!!! tests:
-            var tmpMsg = '';
-            var toType = function(obj) {
-                return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
-            }
 
-            tmpMsg += toType(this.rangeBeacons[i].uuid) + ":" + toType(this.rangeBeacons[i].major) + ":" + toType(this.rangeBeacons[i].minor;
-            tmpMsg += 'didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult);
-            this.logToDom(tmpMsg);
+            this.logToDom('didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult));
+            
             //!!! end tests
 
             if(pluginResult.region.uuid == this.rangeBeacons[i].uuid && pluginResult.region.major == this.rangeBeacons[i].major && pluginResult.region.minor == this.rangeBeacons[i].minor) {
