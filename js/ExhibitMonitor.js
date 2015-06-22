@@ -47,29 +47,21 @@ ExhibitMonitor.prototype.logToDom = function(message) {
 ExhibitMonitor.prototype.setDeligate = function() {
     var delegate = new cordova.plugins.locationManager.Delegate();
 
-    this.logToDom('new delegate var set');
-
     //talked about as "ranging"
     delegate.didRangeBeaconsInRegion = function (pluginResult) {
-        var prox, tmpLogMsg = 'THERE SHOULD BE MORE THAN THIS...<br>';
-
-        this.logToDom('did range beacons in region');
-
-        tmpLogMsg += this.rangeBeacons.length + '<br>';
-        tmpLogMsg += pluginResult.region.uuid + '<br>';
-        tmpLogMsg += pluginResult.region.major + '<br>';
-        tmpLogMsg += pluginResult.region.minor + '<br>';
+        var prox;
 
         //update visuals for ranged iBeacon
         for(i=0; i<this.rangeBeacons.length; i++) {
-        	tmpLogMsg += 'MADE IT IN for()...<br>';
 
+            //!!! ///////////////////////////////////////////////////////////////////
+            //!!! Android is making it to here with good values (YAY iBeacons work!),
+            //!!! but never into the if() below as iOS does... What's different?
+            //!!! ///////////////////////////////////////////////////////////////////
+            logToDom('didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult));
 
-            if(pluginResult.region.uuid.toString() == this.rangeBeacons[i].uuid.toString() && pluginResult.region.major.toString() == this.rangeBeacons[i].major.toString() && pluginResult.region.minor.toString() == this.rangeBeacons[i].minor.toString()) {
+            if(pluginResult.region.uuid == this.rangeBeacons[i].uuid && pluginResult.region.major == this.rangeBeacons[i].major && pluginResult.region.minor == this.rangeBeacons[i].minor) {
         		
-                tmpLogMsg += 'MADE IT IN if()...<br>';
-
-               
 
                 //set RSSI value
         		this.rangeBeacons[i].rssi = pluginResult.beacons[0].rssi;
@@ -94,13 +86,9 @@ ExhibitMonitor.prototype.setDeligate = function() {
 
         		this.rangeBeacons[i].prox = prox;
 
-                tmpLogMsg += 'id: ' + this.rangeBeacons[i].identifier + ', prox: ' + prox + ', rssi: ' + this.rangeBeacons[i].rssi + ' <br>';
-
         		break;
         	}
         }
-
-        this.logToDom(tmpLogMsg);
 
         //show closest iBeacon exhibit
         this.featureClosestExhibit();
@@ -154,8 +142,6 @@ ExhibitMonitor.prototype.featureClosestExhibit = function() {
 ExhibitMonitor.prototype.startRangingBeacons = function() {
     var i;
 
-    this.logToDom('going to start ranging beacons');
-
     for(i=0; i<this.rangeBeacons.length; i++) {
         //this.rangeBeacons[i].i = i; //set i for display update purposes for now (instead of "redrawing" everything)
 
@@ -167,8 +153,6 @@ ExhibitMonitor.prototype.startRangingBeacons = function() {
             .fail(console.error)
             .done();
     }
-
-    this.logToDom('beacons have been set to start ranging');
 };
 
 //Get exhibit and iBeacon data from the D8 website
@@ -189,8 +173,6 @@ ExhibitMonitor.prototype.getData = function() {
 
         //assign data
         this.data = JSON.parse(request.responseText);
-
-        this.logToDom('data assigned');
 
         //rearange data for increased clearity, centered around iBeacons
         for(i=0; i<this.data.length; i++) {
@@ -252,17 +234,11 @@ ExhibitMonitor.prototype.getData = function() {
 
         }
 
-        this.logToDom('ranged ibeacon data ready');
-
         this.startRangingBeacons();
-
-        this.logToDom('going to set deligate...');
 
         //manage iBeacon ranging events
         //!!! check order: likely need to move before this.startRangingBeacons(); ?
         this.setDeligate();
-
-        this.logToDom('deligate set');
       } else {
         //!!! need to allow for retry, don't kill app here
         this.logToDom('There was an error when trying to load the exhibit data. Tell the app developers!');
@@ -272,7 +248,9 @@ ExhibitMonitor.prototype.getData = function() {
 
     request.onerror = function() {
       // There was a connection error of some sort
+      //!!! now what? Don't kill app now...
        this.logToDom('There was a connection error of some sort');
+       alert('There was a connection error of some sort');
     };
 
     request.send();
@@ -317,7 +295,6 @@ ExhibitMonitor.prototype.displayClosestExhibit = function() {
 //deviceready event handler
 ExhibitMonitor.prototype.onDeviceReady = function() {
     try {
-        this.logToDom('setting nav events');
 
         //nav events
         document.getElementById('action-bar').onclick = function() { this.displayClosestExhibit(); }.bind(this);
