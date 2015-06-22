@@ -68,7 +68,7 @@ ExhibitMonitor.prototype.setDeligate = function() {
             if(pluginResult.hasOwnProperty('beacons') && pluginResult.beacons.length > 0) { //Android not picking up iBeacons sometimes when event is fired?
                 this.logToDom('didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult));
 
-                if(pluginResult.region.uuid.toLowerCase() == this.rangeBeacons[i].uuid.toLowerCase() && pluginResult.region.major.toLowerCase() == this.rangeBeacons[i].major.toLowerCase() && pluginResult.region.minor.toLowerCase() == this.rangeBeacons[i].minor.toLowerCase()) {
+                if(pluginResult.region.uuid.toLowerCase() == this.rangeBeacons[i].uuid.toLowerCase() && pluginResult.region.major == this.rangeBeacons[i].major && pluginResult.region.minor == this.rangeBeacons[i].minor) {
             		
 
                     
