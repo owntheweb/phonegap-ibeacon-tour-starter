@@ -116,7 +116,6 @@ ExhibitMonitor.prototype.featureClosestExhibit = function() {
 			}
 		}
 
-        this.logToDom(this.rangeBeacons[i].rssi);
 	}
 
 	//only update markup if closest iBeacon not closest previously
