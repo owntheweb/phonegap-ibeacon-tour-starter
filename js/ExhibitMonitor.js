@@ -51,7 +51,7 @@ ExhibitMonitor.prototype.setDeligate = function() {
 
     //talked about as "ranging"
     delegate.didRangeBeaconsInRegion = function (pluginResult) {
-        var prox;
+        var prox, tmpLogMsg = '';
 
         this.logToDom('did range beacons in region');
 
@@ -82,12 +82,16 @@ ExhibitMonitor.prototype.setDeligate = function() {
 
         		this.rangeBeacons[i].prox = prox;
 
-        		//show closest iBeacon exhibit
-        		this.featureClosestExhibit();
+                tmpLogMsg += 'id: ' + this.rangeBeacons[i].identifier + ', prox: ' + prox + ', rssi: ' + this.rangeBeacons[i].rssi + ' <br>';
 
         		break;
         	}
         }
+
+        this.logToDom(tmpLogMsg);
+
+        //show closest iBeacon exhibit
+        this.featureClosestExhibit();
 
         //logToDom('[DOM] didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult));
     }.bind(this);
@@ -133,7 +137,6 @@ ExhibitMonitor.prototype.featureClosestExhibit = function() {
 
 	}
 
-    this.logToDom('featured closest exhibit');
 };
 
 // Start monitoring iBeacon ranges
