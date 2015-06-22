@@ -59,13 +59,15 @@ ExhibitMonitor.prototype.setDeligate = function() {
         tmpLogMsg += pluginResult.region.uuid + '<br>';
         tmpLogMsg += pluginResult.region.major + '<br>';
         tmpLogMsg += pluginResult.region.minor + '<br>';
-        tmpLogMsg += '<br>';
-        tmpLogMsg += '<br>';
 
         //update visuals for ranged iBeacon
         for(i=0; i<this.rangeBeacons.length; i++) {
         	if(pluginResult.region.uuid == this.rangeBeacons[i].uuid && pluginResult.region.major == this.rangeBeacons[i].major && pluginResult.region.minor == this.rangeBeacons[i].minor) {
         		
+                tmpLogMsg += 'GOT IN HERE...<br>';
+
+                tmpLogMsg += pluginResult.beacons[0].proximity + '<br>'; 
+
                 //set RSSI value
         		this.rangeBeacons[i].rssi = pluginResult.beacons[0].rssi;
 
