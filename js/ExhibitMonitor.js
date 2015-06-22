@@ -51,7 +51,7 @@ ExhibitMonitor.prototype.setDeligate = function() {
 
     //talked about as "ranging"
     delegate.didRangeBeaconsInRegion = function (pluginResult) {
-        var prox, tmpLogMsg = '';
+        var prox, tmpLogMsg = 'THERE SHOULD BE MORE THAN THIS...<br>';
 
         this.logToDom('did range beacons in region');
 
