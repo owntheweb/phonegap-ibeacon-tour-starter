@@ -54,24 +54,12 @@ ExhibitMonitor.prototype.setDeligate = function() {
         //update visuals for ranged iBeacon
         for(i=0; i<this.rangeBeacons.length; i++) {
 
-            //!!! ///////////////////////////////////////////////////////////////////
-            //!!! Android is making it to here with good values (YAY iBeacons work!),
-            //!!! but never into the if() below as iOS does... What's different?
-            //!!! ///////////////////////////////////////////////////////////////////
-            
-            //!!! tests:
+            //Work around Android not picking up iBeacons sometimes when event is fired (issue posted)
+            if(pluginResult.hasOwnProperty('beacons') && pluginResult.beacons.length > 0) {
+                //this.logToDom('didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult));
 
-            //this.logToDom('didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult));
-            
-            //!!! end tests
-
-            if(pluginResult.hasOwnProperty('beacons') && pluginResult.beacons.length > 0) { //Android not picking up iBeacons sometimes when event is fired?
-                this.logToDom('didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult));
-
+                //toLowerCase(): Android returning lowercase UUID while iOS returning uppercase (issue posted)
                 if(pluginResult.region.uuid.toLowerCase() == this.rangeBeacons[i].uuid.toLowerCase() && pluginResult.region.major == this.rangeBeacons[i].major && pluginResult.region.minor == this.rangeBeacons[i].minor) {
-            		
-
-                    
 
                     //set RSSI value
             		this.rangeBeacons[i].rssi = pluginResult.beacons[0].rssi;
