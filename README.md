@@ -2,9 +2,9 @@
 
 by [Christopher Stevens](http://www.christopherstevens.cc)
 
-Note: This is still a rough work-in-progress, also not functioning yet on Android phones (as far as I know), working on my iPhone 6.
+Note: This is still a rough work-in-progress.
 
-This is a starter PhoneGap app built for the purpose of exploring self-guided iBeacon-triggered Drupal 8 powered exhibit tours. It's part of an upcoming presentation on the subject. Stay tuned a better project description and instructions. ;)
+This is a starter PhoneGap app built for the purpose of exploring self-guided iBeacon-triggered Drupal 8 powered exhibit tours. It's part of an upcoming presentation on the subject. Visit [this evolving blog](http://christopherstevens.cc/blog/create-mobile-self-guided-tour-using-drupal-8-and-phonegap) for more information.
 
 See [iBeacon Ranger](https://github.com/owntheweb/ibeacon-ranger), an iBeacon diagnostic tool leading the way to this app.
 
